@@ -1,0 +1,193 @@
+body
+{
+animation-name: bg-colors;
+animation-duration: 10s; 
+animation-iteration-count: infinite;
+animation-direction: alternate;
+}
+@keyframes bg-colors {
+    0%{background: #000;}
+    100%{background: #050044;}
+}
+
+
+.container
+{
+display: flex;
+justify-content: center;
+align-items: center;
+align-self: center;
+}
+
+.eyelid
+{
+overflow: hidden;
+animation-name: open-eyes;
+animation-duration: 3s; 
+animation-iteration-count: 1;
+}
+@keyframes open-eyes{
+    0% {
+    top: 0;
+    }
+    100% {
+    left: 100px;
+    top: -100%;
+    visibility: hidden;
+    }
+}
+
+
+
+
+
+@media screen and (max-width: 700px) {
+h1
+{
+color:#fff;
+font-size: 350%;
+}
+
+.eyelid
+{   position: absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 50%;
+    background-color: #fff;  
+    width: 100px;
+    height: 100px
+}
+.eyeball
+{   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 50%;
+    background-color: #fff;  
+    width: 100px;
+    height: 100px
+}
+
+.inner-eye
+{   
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 50%;
+    background-color: #050044;  
+    width: 40px;
+    height: 40px
+}
+
+.pupil
+{   
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 50%;
+    background-color: #000;  
+    width: 10px;
+    height: 10px
+}
+
+.light
+{   position: absolute;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 50%;
+    background-color: #fff;  
+    width: 5px;
+    height: 5px
+}
+}
+
+
+
+@media screen and (min-width: 750px) {
+    h1
+{
+color:#fff;
+font-size: 1000%;
+}
+.eyelid
+{   
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 50%;
+    background-color: #fff;  
+    width: 200px;
+    height: 200px
+}
+.eyeball
+{   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 50%;
+    background-color: #fff;  
+    width: 200px;
+    height: 200px
+}
+
+.inner-eye
+{   
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 50%;
+    background-color: #050044;  
+    width: 100px;
+    height: 100px
+}
+
+.pupil
+{   
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 50%;
+    background-color: #000;  
+    width: 50px;
+    height: 50px
+}
+
+.light
+{   position: absolute;
+    margin-left: 60px;
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 50%;
+    background-color: #fff;  
+    width: 15px;
+    height: 15px
+}
+
+}
+
+
+
+
