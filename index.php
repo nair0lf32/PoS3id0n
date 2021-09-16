@@ -12,7 +12,6 @@
     <link rel="shortcut icon" href="favicon.ico">
 
     <link rel="stylesheet" href="/css/style.css">
-    <script src="/js/script.js"></script>
 </head>
 
 <body>
@@ -33,7 +32,7 @@
 
 
         <section class="content-main">
-
+        <div class="message"></div>
         </section>
 
         <footer>
@@ -43,7 +42,7 @@
 
 
 
-
+    <script type="text/javascript" src="/js/script.js"></script>
 </body>
 
 </html>
@@ -54,7 +53,7 @@
 
 
 
-echo "poseidon"
+echo "message";
 
 
 ?>

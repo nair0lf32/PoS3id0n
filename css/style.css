@@ -1,13 +1,6 @@
 body
 {
-animation-name: bg-colors;
-animation-duration: 10s; 
-animation-iteration-count: infinite;
-animation-direction: alternate;
-}
-@keyframes bg-colors {
-    0%{background: #000;}
-    100%{background: #050044;}
+background: #000;
 }
 
 
@@ -21,55 +14,40 @@ align-self: center;
 
 .eyelid
 {
-overflow: hidden;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: rgb(15, 0, 56); 
+    
+    
 animation-name: open-eyes;
-animation-duration: 3s; 
+animation-duration: 6s; 
 animation-iteration-count: 1;
+animation-fill-mode: forwards;
+animation-delay: 1s;
+animation-timing-function: ease-in-out;
 }
 @keyframes open-eyes{
     0% {
     top: 0;
     }
     100% {
-    left: 100px;
-    top: -100%;
-    visibility: hidden;
+    top: -400%;
     }
 }
 
-
-
-
-
-@media screen and (max-width: 700px) {
-h1
-{
-color:#fff;
-font-size: 350%;
-}
-
-.eyelid
-{   position: absolute;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid;
-    border-radius: 50%;
-    background-color: #fff;  
-    width: 100px;
-    height: 100px
-}
 .eyeball
-{   
+{       
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid;
     border-radius: 50%;
-    background-color: #fff;  
-    width: 100px;
-    height: 100px
+    background-color: #fff; 
+    overflow: hidden;
 }
 
 .inner-eye
@@ -78,12 +56,10 @@ font-size: 350%;
     justify-content: center;
     justify-self: center;
     align-items: center;
-    border: 1px solid;
     border-radius: 50%;
     background-color: #050044;  
-    width: 40px;
-    height: 40px
 }
+
 
 .pupil
 {   
@@ -91,11 +67,8 @@ font-size: 350%;
     justify-content: center;
     justify-self: center;
     align-items: center;
-    border: 1px solid;
     border-radius: 50%;
     background-color: #000;  
-    width: 10px;
-    height: 10px
 }
 
 .light
@@ -105,9 +78,44 @@ font-size: 350%;
     justify-content: center;
     justify-self: center;
     align-items: center;
-    border: 1px solid;
     border-radius: 50%;
     background-color: #fff;  
+}
+
+
+
+@media screen and (max-width: 699px) {
+h1
+{
+color:#fff;
+font-size: 350%;
+}
+
+.eyelid
+{  
+    width: 300px;
+    height: 300px
+}
+.eyeball
+{    
+    width: 100px;
+    height: 100px
+}
+
+.inner-eye
+{    
+    width: 40px;
+    height: 40px
+}
+
+.pupil
+{   
+    width: 10px;
+    height: 10px
+}
+
+.light
+{  
     width: 5px;
     height: 5px
 }
@@ -115,73 +123,37 @@ font-size: 350%;
 
 
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 700px) {
     h1
 {
 color:#fff;
 font-size: 1000%;
 }
 .eyelid
-{   
-    position: absolute;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid;
-    border-radius: 50%;
-    background-color: #fff;  
-    width: 200px;
-    height: 200px
+{     
+    width: 600px;
+    height: 600px
 }
 .eyeball
-{   
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid;
-    border-radius: 50%;
-    background-color: #fff;  
+{    
     width: 200px;
     height: 200px
 }
 
 .inner-eye
-{   
-    display: flex;
-    justify-content: center;
-    justify-self: center;
-    align-items: center;
-    border: 1px solid;
-    border-radius: 50%;
-    background-color: #050044;  
+{    
     width: 100px;
     height: 100px
 }
 
 .pupil
-{   
-    display: flex;
-    justify-content: center;
-    justify-self: center;
-    align-items: center;
-    border: 1px solid;
-    border-radius: 50%;
-    background-color: #000;  
+{    
     width: 50px;
     height: 50px
 }
 
 .light
-{   position: absolute;
-    margin-left: 60px;
-    display: flex;
-    justify-content: center;
-    justify-self: center;
-    align-items: center;
-    border: 1px solid;
-    border-radius: 50%;
-    background-color: #fff;  
+{   
     width: 15px;
     height: 15px
 }
