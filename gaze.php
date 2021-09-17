@@ -64,7 +64,7 @@ else{echo "<p> hmm...I can't see your machine name..pesky DNS meddling with my a
 
 //IP Geolocation
 /*Get user ip address details with geoplugin.net*/
-$ip_info = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=".$ip));  
+$ip_info = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip={$ip}"));  
 if($ip_info && $ip_info->geoplugin_countryName != null){
 
 /*Get City name by return array*/
