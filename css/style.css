@@ -6,7 +6,7 @@ background: #000;
 p
 {
 color: #fff;
-font-size: 300%;
+font-size: 200%;
 text-align:center;
 }
 
@@ -31,7 +31,7 @@ align-self: center;
     
     
 animation-name: open-eyes;
-animation-duration: 6s; 
+animation-duration: 5s; 
 animation-iteration-count: 1;
 animation-fill-mode: forwards;
 animation-delay: 1s;
@@ -80,7 +80,6 @@ animation-timing-function: ease-in-out;
 
 .light
 {   position: absolute;
-    margin-left: 10px;
     display: flex;
     justify-content: center;
     justify-self: center;
@@ -124,7 +123,8 @@ font-size: 350%;
 .light
 {  
     width: 5px;
-    height: 5px
+    height: 5px;
+    margin-left: 20px;
 }
 }
 
@@ -162,15 +162,21 @@ font-size: 1000%;
 .light
 {   
     width: 15px;
-    height: 15px
+    height: 15px;
+    margin-left: 40px;
 }
 
 }
 
 
+span
+{
+color: blue;
+}
 
 .copyright
 {
 font-size: 150%;
 font-style: italic;
 }
+
