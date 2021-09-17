@@ -32,11 +32,24 @@
 
 
         <section class="content-main">
-        <div class="message"></div>
+        <div class="message">
+        <?php 
+        echo "<p> Hello, and welcome... </p>";
+        echo "<p> I am poseidon's eye...I can see you..whoever you are, whenever you are.</p>";
+        echo "<p> Wanna test me? try hiding yourself..go private, vpn or proxy..</p>";
+        echo "<p> Let me show you what I can see about you... </p>";
+        echo "<p> A quick gaze in your data...and BEHOLD! below you can get your results...</p>";
+        ?>
+        </div>
+
+        <div class=gaze-data>
+        <?php include 'gaze.php'; ?>
+        </div>
+
         </section>
 
         <footer>
-
+        <p class="copyright">by florian EDEMESSI (nair0lf32) 2021</p>
         </footer>
     </div>
 
@@ -48,12 +61,3 @@
 </html>
 
 
-<?php 
-
-
-
-
-echo "message";
-
-
-?>

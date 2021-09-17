@@ -3,6 +3,12 @@ body
 background: #000;
 }
 
+p
+{
+color: #fff;
+font-size: 300%;
+text-align:center;
+}
 
 .container
 {
@@ -20,7 +26,8 @@ align-self: center;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background-color: rgb(15, 0, 56); 
+    background-color: #080449; 
+    box-shadow: 15px 15px 0 0 #080449;
     
     
 animation-name: open-eyes;
@@ -162,4 +169,8 @@ font-size: 1000%;
 
 
 
-
+.copyright
+{
+font-size: 150%;
+font-style: italic;
+}
