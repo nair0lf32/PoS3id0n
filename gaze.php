@@ -1,7 +1,7 @@
 <?php
 require 'vendor/autoload.php';
 include ('Keys.php'); //KEY FILE THAT IS OBVIOUSLY GITIGNORED
-require_once('geoplugin/geoplugin.class.php');
+
 use DeviceDetector\DeviceDetector;
 use DeviceDetector\Parser\Device\AbstractDeviceParser;
 
@@ -67,8 +67,8 @@ that's poor people currency...we use shellfish in Atlantis.  </p>";
 
 if ($response['mobile']){echo "<p> you are using a <span> mobile connection </span> ...maybe a modem with a Sim-card </p>";}
 
-echo "<p> you get your internet from <span> {$response['as']} {$response['isp']} </span>
-your ISP doesn't really care about your privacy to be honest. </p>";
+echo "<p> you get your internet from <span> {$response['as']} with {$response['isp']} </span>
+and your ISP doesn't really care about your privacy to be honest. </p>";
 
 
 
@@ -78,7 +78,7 @@ if ($response['proxy']){echo "<p> I sense obfuscation on your IP address you are
     or a hacker? Oh no I cannot get your Ip...yeah no I am joking its <span> {$response['query']}  </span> </p>";}
     else
     {echo "<p> you came at me as a simple mortal <i> no vpn, no proxy,no Tor...nothing </i>
-        you are not very challening...nor original...here have your IP address and go away <span> {$response['ip']}</span>
+        you are not very challening...nor original...here have your IP address and go away <span> {$response['query']}</span>
 </p>";
 }
 
