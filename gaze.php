@@ -37,7 +37,7 @@ installed on a <span> {$device} </span> with <span> {$os} </span>
 $IP_ADDRESS = $_SERVER['REMOTE_ADDR']; # Automatically get IP Address
 // USE YOUR OWN API KEY BELOW (FOR OBVIOUS REASONS I GITIGNORED MY KEY FILE)
 // API URL
-$API_URL = 'http://ip-api.com/json/'.urlencode($IP_ADDRESS);
+$API_URL = 'http://ip-api.com/json/'.urlencode($IP_ADDRESS).'?fields=66846719';
 // Fetch VPNAPI.IO API 
 $response = file_get_contents($API_URL);
 // Decode JSON response
@@ -50,22 +50,22 @@ implode(" " ,$response);
 // Check if IP Address is VPN
 if($response->security->vpn) {
     echo "<p> Oh wow a <i>VPN</i>..so original..you came with that yourself?
-    how would I ever get your IP address now? <span> {$response->ip} </span></p>";
+    how would I ever get your IP address now? <span> {$response->query} </span></p>";
 } 
 // Check if IP Address is Proxy
 elseif($response->security->proxy) {
 	echo "<p> A <i>Proxy</i>...yeah ok those are everywhere nowadays but
-    hey, nice try...now get your IP address and go away: <span> {$response->ip} </span></p>";
+    hey, nice try...now get your IP address and go away: <span> {$response->query} </span></p>";
 } 
 // Check if IP Address is TOR Exit Node
 elseif($response->security->tor) {
 	echo "<p> Oh a <i>Tor node</i>? you seem to be a dangerous person..are you in the mafia 
     or anything? are you a criminal? even hackers fear you...I do not know if 
-    <span> {$response->ip} </span> is even you IP address</p>";
+    <span> {$response->query} </span> is even you IP address</p>";
 } else {
 	// IP Address that is not obscured
 	echo "<p> you came at me <i> RAW </i>... like a simple mortal... you are neither very challenging 
-    nor very orignal... Here have your IP address and go away <span> {$response->ip} </span></p>";
+    nor very orignal... Here have your IP address and go away <span> {$response->query} </span></p>";
 }
 }else { echo "<p> sorry I cannot get your Ip data </p>";}
 
@@ -77,7 +77,7 @@ echo "<p> So...you are from <span> {$response->city} {$response->country}  {$res
 its in the timezone of <span>{$response->timezone}</span>, I see you precisely at 
 <span> latitude: {$response->latitude}, longitude: {$response->longitude}</span> with an
 <span> accuracy radius of: {$response->locationAccuracyRadius}</span>. seems like you
-still pay with <span> {$response->currencySymbol}/{$response->currencyCode} </span> there..
+still pay with <span> {$response->currency}/{$response->currencyCode} </span> there..
 that's poor people currency..we use shellfish in Atlantis. </p>";
 
 
