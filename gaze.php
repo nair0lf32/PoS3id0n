@@ -1,5 +1,6 @@
 <?php
 require 'vendor/autoload.php';
+require_once('geoplugin/geoplugin.class.php');
 use DeviceDetector\DeviceDetector;
 use DeviceDetector\Parser\Device\AbstractDeviceParser;
 
@@ -26,9 +27,44 @@ $device = $detector->getDeviceName();
 $brand = $detector->getBrandName();
 $model = $detector->getModel();
 echo "<p> You came at me with a <span> {$client} </span>  
-installed on a <span> {$device} </span> with <span> {$os} </span>  </p>";
-echo "<p> a good old <span> {$brand} </span> <span> {$model} </span>  </p>";
+installed on a <span> {$device} </span> with <span> {$os} </span> 
+<span>, {$brand} </span> <span> {$model} </span>  </p>";
 }
+
+
+
+
+//simple Proxy detection
+$test_HTTP_proxy_headers = array(
+	'HTTP_VIA',
+	'VIA',
+	'Proxy-Connection',
+	'HTTP_X_FORWARDED_FOR',  
+	'HTTP_FORWARDED_FOR',
+	'HTTP_X_FORWARDED',
+	'HTTP_FORWARDED',
+	'HTTP_CLIENT_IP',
+	'HTTP_FORWARDED_FOR_IP',
+	'X-PROXY-ID',
+	'MT-PROXY-ID',
+	'X-TINYPROXY',
+	'X_FORWARDED_FOR',
+	'FORWARDED_FOR',
+	'X_FORWARDED',
+	'FORWARDED',
+	'CLIENT-IP',
+	'CLIENT_IP',
+	'PROXY-AGENT',
+	'HTTP_X_CLUSTER_CLIENT_IP',
+	'FORWARDED_FOR_IP',
+	'HTTP_PROXY_CONNECTION');
+	
+	foreach($test_HTTP_proxy_headers as $header){
+		if (isset($_SERVER[$header]) && !empty($_SERVER[$header])) {
+			echo "<p> oh a <i>Proxy</i>...that's cute, I will allow that.</p>"; 
+		}
+	}
+
 
 
 //IP address detection
@@ -36,17 +72,12 @@ function getIPAddress() {
 //whether ip is from the share internet  
     if(!empty($_SERVER['HTTP_CLIENT_IP'])) {  
                 $ip = $_SERVER['HTTP_CLIENT_IP']; 
-                echo "<p> a share Ip address..your ISP must be the loving and caring one </p>"; 
+                echo "<p> a <i> Shared IP addresss</i>...your ISP must be the loving and caring one </p>"; 
         } 
-    //whether ip is from the proxy  
-    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {  
-                $ip = $_SERVER['HTTP_X_FORWARDED_FOR']; 
-                echo "<p> oh a proxy...that's cute.</p>"; 
-    }  
 //whether ip is from the remote address  
     else{  
     $ip = $_SERVER['REMOTE_ADDR']; 
-    echo "<p> you came at me raw...a simple Ip address for a simple mortal  </p>";
+    echo "<p> you came at me <i>Raw</i>...a simple remote Ip address for a simple mortal  </p>";
     }  
     return $ip;  
 }  
@@ -64,30 +95,16 @@ else{echo "<p> hmm...I can't see your machine name..pesky DNS meddling with my a
 
 //IP Geolocation
 /*Get user ip address details with geoplugin.net*/
-$ip_info = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip={$ip}"));  
-if($ip_info && $ip_info->geoplugin_countryName != null){
+$geoplugin = new geoPlugin();
+$geoplugin->locate();
+if($geoplugin->locate() != null){
 
-/*Get City name by return array*/
-$city = isset($addrDetailsArr['geoplugin_city'])?$addrDetailsArr['geoplugin_city']:'Not defined'; 
-/*Get Country name by return array*/
-$country = isset($addrDetailsArr['geoplugin_countryName'])?$addrDetailsArr['geoplugin_countryName']:'Not defined';
-/*Get Country name by return array*/
-$latitude = isset($addrDetailsArr['geoplugin_latitude'])?$addrDetailsArr['geoplugin_latitude']:'Not defined';
-/*Get Country name by return array*/
-$longitude = isset($addrDetailsArr['geoplugin_longitude'])?$addrDetailsArr['geoplugin_longitude']:'Not defined';
-/*Get Country name by return array*/
-$currencyCode = isset($addrDetailsArr['geoplugin_currencyCode'])?$addrDetailsArr['geoplugin_currencyCode']:'Not defined';
-/*Get Country name by return array*/
-$currencySymbol = isset($addrDetailsArr['geoplugin_currencySymbol'])?$addrDetailsArr['geoplugin_currencySymbol']:'Not defined';
-/*Get Continent name by return array*/
-$continent = isset($addrDetailsArr['geoplugin_continentName'])?$addrDetailsArr['geoplugin_continentName']:'Not defined';
-/*Get Timezone by return array*/
-$continent = isset($addrDetailsArr['geoplugin_timezone'])?$addrDetailsArr['geoplugin_timezone']:'Not defined';
-
-echo "<p> So...you are from <span> {$city}, {$country}... </span> </p>";
-
-
-
+echo "<p> So...you are from <span> {$geoplugin->city}, {$geoplugin->countryName} </span>... 
+its in the timezone of <span>{$geoplugin->timezone}</span>, I see you precisely at 
+<span> latitude: {$geoplugin->latitude}, longitude: {$geoplugin->longitude}</span> with an
+<span> accuracy radius of: {$geoplugin->locationAccuracyRadius}</span>. seems like you
+still pay with <span> {$geoplugin->currencySymbol}/{$geoplugin->currencyCode} </span> there..
+that's poor people currency..we use shellfish in Atlantis. </p>";
 }
 else
 {

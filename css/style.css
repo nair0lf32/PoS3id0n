@@ -27,14 +27,14 @@ align-self: center;
     align-items: center;
     border-radius: 50%;
     background-color: #080449; 
-    box-shadow: 15px 15px 0 0 #080449;
+    box-shadow: 0 15px 0 15px #000;
     
     
 animation-name: open-eyes;
-animation-duration: 5s; 
+animation-duration: 4s; 
 animation-iteration-count: 1;
 animation-fill-mode: forwards;
-animation-delay: 1s;
+animation-delay: 0.5s;
 animation-timing-function: ease-in-out;
 }
 @keyframes open-eyes{
@@ -174,9 +174,14 @@ span
 color: blue;
 }
 
+i
+{
+  color: red;  
+}
+
 .copyright
 {
-font-size: 150%;
+font-size: 100%;
 font-style: italic;
 }
 
