@@ -39,7 +39,7 @@ installed on a <span> {$device} </span> with <span> {$os} </span>
 $IP_ADDRESS = $_SERVER['REMOTE_ADDR']; # Automatically get IP Address
 // USE YOUR OWN API KEY BELOW (FOR OBVIOUS REASONS I GITIGNORED MY KEY FILE)
 // API URL
-$API_URL = 'https://vpnapi.io/api/' . $IP_ADDRESS . '?key=' . $_ENV["API_KEY"];
+$API_URL = 'https://vpnapi.io/api/' . $IP_ADDRESS . '?key=' . getenv("API_KEY");
 // Fetch VPNAPI.IO API 
 $response = file_get_contents($API_URL);
 // Decode JSON response
