@@ -1,6 +1,6 @@
 <?php
 require 'vendor/autoload.php';
-require('Keys.php'); //KEY FILE THAT IS OBVIOUSLY GITIGNORED
+include_once ('Keys.php'); //KEY FILE THAT IS OBVIOUSLY GITIGNORED
 require_once('geoplugin/geoplugin.class.php');
 use DeviceDetector\DeviceDetector;
 use DeviceDetector\Parser\Device\AbstractDeviceParser;
