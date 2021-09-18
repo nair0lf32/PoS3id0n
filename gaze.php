@@ -1,5 +1,6 @@
 <?php
 require 'vendor/autoload.php';
+require('Keys.php'); //KEY FILE THAT IS OBVIOUSLY GITIGNORED
 require_once('geoplugin/geoplugin.class.php');
 use DeviceDetector\DeviceDetector;
 use DeviceDetector\Parser\Device\AbstractDeviceParser;
@@ -33,62 +34,48 @@ installed on a <span> {$device} </span> with <span> {$os} </span>
 
 
 
-
 //simple Proxy detection
-$test_HTTP_proxy_headers = array(
-	'HTTP_VIA',
-	'VIA',
-	'Proxy-Connection',
-	'HTTP_X_FORWARDED_FOR',  
-	'HTTP_FORWARDED_FOR',
-	'HTTP_X_FORWARDED',
-	'HTTP_FORWARDED',
-	'HTTP_CLIENT_IP',
-	'HTTP_FORWARDED_FOR_IP',
-	'X-PROXY-ID',
-	'MT-PROXY-ID',
-	'X-TINYPROXY',
-	'X_FORWARDED_FOR',
-	'FORWARDED_FOR',
-	'X_FORWARDED',
-	'FORWARDED',
-	'CLIENT-IP',
-	'CLIENT_IP',
-	'PROXY-AGENT',
-	'HTTP_X_CLUSTER_CLIENT_IP',
-	'FORWARDED_FOR_IP',
-	'HTTP_PROXY_CONNECTION');
-	
-	foreach($test_HTTP_proxy_headers as $header){
-		if (isset($_SERVER[$header]) && !empty($_SERVER[$header])) {
-			echo "<p> oh a <i>Proxy</i>...that's cute, I will allow that.</p>"; 
-		}
-	}
+// Get IP Address
+$IP_ADDRESS = $_SERVER['REMOTE_ADDR']; # Automatically get IP Address
+// USE YOUR OWN API KEY BELOW (FOR OBVIOUS REASONS I GITIGNORED MY KEY FILE)
+// API URL
+$API_URL = 'https://vpnapi.io/api/' . $IP_ADDRESS . '?key=' . $API_KEY;
+// Fetch VPNAPI.IO API 
+$response = file_get_contents($API_URL);
+// Decode JSON response
+$response = json_decode($response);
+// Check if IP Address is VPN
+if($response->security->vpn) {
+    echo "<p> Oh wow a <i>VPN</i>..so original..you came with that yourself?
+    how would I ever get your IP address now? <span> {$response->ip} </span></p>";
+} 
+// Check if IP Address is Proxy
+elseif($response->security->proxy) {
+	echo "<p> A <i>Proxy</i>...yeah ok those are everywhere nowadays but
+    hey, nice try...now get your IP address and go away: <span> {$response->ip} </span></p>";
+} 
+// Check if IP Address is TOR Exit Node
+elseif($response->security->tor) {
+	echo "<p> Oh a <i>Tor node</i>? you seem to be a dangerous person..are you in the mafia 
+    or anything? are you a criminal? even hackers fear you...I do not know if 
+    <span> {$response->ip} </span> is even you IP address</p>";
+} else {
+	// IP Address that is not obscured
+	echo "<p> you came at me <i> RAW </i>... like a simple mortal... you are neither very challenging 
+    nor very orignal... Here have your IP address and go away <span> {$response->ip} </span></p>";
+}
 
 
-
-//IP address detection
-function getIPAddress() {  
-//whether ip is from the share internet  
-    if(!empty($_SERVER['HTTP_CLIENT_IP'])) {  
-                $ip = $_SERVER['HTTP_CLIENT_IP']; 
-                echo "<p> a <i> Shared IP addresss</i>...your ISP must be the loving and caring one </p>"; 
-        } 
-//whether ip is from the remote address  
-    else{  
-    $ip = $_SERVER['REMOTE_ADDR']; 
-    echo "<p> you came at me <i>Raw</i>...a simple remote Ip address for a simple mortal  </p>";
-    }  
-    return $ip;  
-}  
-$ip = getIPAddress();
-echo "<p> Here you are: <span> {$ip}</p>";  
-
-
-if(!empty($host) or !($host==$ip)){
+//HOstname? if possible?
+if(!empty($host) or !($host==$IP_ADDRESS)){
 echo "<p> may I call your machine <span> {$host} </span>? what a weird name? </p>";
 }
 else{echo "<p> hmm...I can't see your machine name..pesky DNS meddling with my affairs </p>"; }
+
+
+
+//Geolocation
+$location = $response->location;
 
 
 
