@@ -45,17 +45,15 @@ $response = json_decode($response, true);
 
 
 if (!empty($response)){
-echo "<p> {$response} </p>";
-implode(" " ,$response);
 // Check if IP Address is VPN
 if($response->security->vpn) {
     echo "<p> Oh wow a <i>VPN</i>..so original..you came with that yourself?
-    how would I ever get your IP address now? <span> {$response->query} </span></p>";
+    how would I ever get your IP address now? <span> {$response['query']} </span></p>";
 } 
 // Check if IP Address is Proxy
 elseif($response->security->proxy) {
 	echo "<p> A <i>Proxy</i>...yeah ok those are everywhere nowadays but
-    hey, nice try...now get your IP address and go away: <span> {$response->query} </span></p>";
+    hey, nice try...now get your IP address and go away: <span> {$response['query']} </span></p>";
 } 
 // Check if IP Address is TOR Exit Node
 elseif($response->security->tor) {
@@ -65,7 +63,7 @@ elseif($response->security->tor) {
 } else {
 	// IP Address that is not obscured
 	echo "<p> you came at me <i> RAW </i>... like a simple mortal... you are neither very challenging 
-    nor very orignal... Here have your IP address and go away <span> {$response->query} </span></p>";
+    nor very orignal... Here have your IP address and go away <span> {$response['query']} </span></p>";
 }
 }else { echo "<p> sorry I cannot get your Ip data </p>";}
 
@@ -73,7 +71,7 @@ elseif($response->security->tor) {
 
 
 //Geolocation
-echo "<p> So...you are from <span> {$response->city} {$response->country}  {$response->continent}</span>... 
+echo "<p> So...you are from <span> {$response['city']} {$response['country']}  {$response['continent']}</span>... 
 its in the timezone of <span>{$response->timezone}</span>, I see you precisely at 
 <span> latitude: {$response->latitude}, longitude: {$response->longitude}</span> with an
 <span> accuracy radius of: {$response->locationAccuracyRadius}</span>. seems like you
