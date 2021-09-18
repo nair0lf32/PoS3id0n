@@ -32,9 +32,33 @@ installed on a <span> {$device} </span> with <span> {$os} </span>
 }
 
 
+
+
+//GET IP Address
+function getIPAddress() {  
+
+ //whether ip is from the share internet  
+if(!emptyempty($_SERVER['HTTP_CLIENT_IP'])) {  
+    $ip = $_SERVER['HTTP_CLIENT_IP'];  
+} 
+
+    //whether ip is from the proxy  
+    elseif (!emptyempty($_SERVER['HTTP_X_FORWARDED_FOR'])) {  
+                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];  
+    }  
+//whether ip is from the remote address  
+    else{  
+        $ip = $_SERVER['REMOTE_ADDR'];  
+    }  
+return $ip;  
+}  
+
+$IP_ADDRESS = getIPAddress();  
+
+
+
 //simple Proxy detection
-// Get IP Address
-$IP_ADDRESS = $_SERVER['REMOTE_ADDR']; # Automatically get IP Address
+
 // USE YOUR OWN API KEY BELOW (FOR OBVIOUS REASONS I GITIGNORED MY KEY FILE)
 // API URL
 $API_URL = 'http://ip-api.com/json/'.urlencode($IP_ADDRESS).'?fields=66846719';
