@@ -32,17 +32,16 @@ installed on a <span> {$device} </span> with <span> {$os} </span>
 }
 
 
-
 //simple Proxy detection
 // Get IP Address
 $IP_ADDRESS = $_SERVER['REMOTE_ADDR']; # Automatically get IP Address
 // USE YOUR OWN API KEY BELOW (FOR OBVIOUS REASONS I GITIGNORED MY KEY FILE)
 // API URL
-$API_URL = 'http://ip-api.com/php/{$IP_ADDRESS}';
+$API_URL = 'http://ip-api.com/php/'.urlencode($IP_ADDRESS);
 // Fetch VPNAPI.IO API 
 $response = file_get_contents($API_URL);
 // Decode JSON response
-$response = json_decode($response);
+$response = json_decode($response, true);
 
 
 if (!empty($response)){
