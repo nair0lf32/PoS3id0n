@@ -27,10 +27,8 @@ $brand = $detector->getBrandName();
 $model = $detector->getModel();
 echo "<p> You came at me with a <span> {$client} </span>  
 installed on a <span> {$device} </span> with <span> {$os} </span> 
-<span>, {$brand} </span> <span> {$model} </span>  </p>";
+<span> {$brand} </span> <span> {$model} </span>  </p>";
 }
-
-
 
 
 //GET IP Address
@@ -52,36 +50,6 @@ return $ip;
 $IP_ADDRESS = getIPAddress();  
 
 
-
-// USE YOUR OWN API KEYS BELOW (FOR OBVIOUS REASONS I GITIGNORED MY KEY FILE)
-$VPNAPI_URL = 'https://vpnapi.io/api/'.urlencode($IP_ADDRESS). '?key='.urlencode(getenv('API_KEY'));
-// Fetch VPNAPI.IO API 
-$response1 = file_get_contents($VPNAPI_URL);
-// Decode JSON response
-$response1 = json_decode($response1, true);
-if (!empty($response1)){
-// Check if IP Address is VPN
-if($response1['security']['vpn']) {
-    echo "<p> Oh wow a <i>VPN</i>..so original..you came with that yourself?
-    how would I ever get your IP address now? <span> {$response1['ip']} </span></p>";
-} 
-// Check if IP Address is Proxy
-elseif($response1['security']['proxy']) {
-	echo "<p> A <i>Proxy</i>...yeah ok those are everywhere nowadays but
-    hey, nice try...now get your IP address and go away: <span> {$response1['ip']} </span></p>";
-} 
-// Check if IP Address is TOR Exit Node
-elseif($response1['security']['tor']) {
-	echo "<p> Oh a <i>Tor node</i>? you seem to be a dangerous person..are you in the mafia 
-    or anything? are you a criminal? even hackers fear you...I do not know if 
-    <span> {$response1['ip']} </span> is even you IP address</p>";
-} else {
-	// IP Address that is not obscured
-	echo "<p> you came at me <i> RAW </i>... like a simple mortal... you are neither very challenging 
-    nor very orignal... Here have your IP address and go away <span> {$response1['ip']} </span></p>";
-}
-}else { echo "<p> hmm..I don't know if you obfuscated your IP address or not...well played </p>";}
-
 //Geolocation
 // API URL
 $IP_API_URL = 'http://ip-api.com/json/'.urlencode($IP_ADDRESS).'?fields=66846719';
@@ -91,16 +59,30 @@ $response = file_get_contents($IP_API_URL);
 $response = json_decode($response, true);
 if (!empty($response)){
 echo "<p> So...you are from <span> {$response['city']} {$response['country']} {$response['regionName']} {$response['continent']}</span>... 
-its in the timezone of <span>{$response['timezone']}</span>, I see you precisely at 
+its in the timezone of <span>{$response['timezone']}</span> </br> I see you precisely at 
 <span> latitude: {$response['lat']}, longitude: {$response['lon']}</span> with an
-<span> accuracy radius of: {$response['offset']}</span>. seems like you
+<span> accuracy radius of: {$response['offset']}</span>. </br> seems like you
 still pay with <span> {$response['currency']} </span> there..
 that's poor people currency...we use shellfish in Atlantis.  </p>";
 
-if ($response['mobile']){echo "<p> you are on your mobile phone right now </p>";}
+if ($response['mobile']){echo "<p> you are using a <span> mobile connection </span> ...maybe a modem with a Sim-card </p>";}
 
 echo "<p> you get your internet from <span> {$response['as']} {$response['isp']} </span>
-your ISP doesn't really care abot your privacy to be honest. </p>";
+your ISP doesn't really care about your privacy to be honest. </p>";
+
+
+
+//Obfuscation Detection
+if ($response['proxy']){echo "<p> I sense obfuscation on your IP address you are trying to hide from 
+    me with either <i> vpn/proxy or Tor </i>...for legal reasons I hae to ask..are you a criminal?
+    or a hacker? Oh no I cannot get your Ip...yeah no I am joking its <span> {$response['query']}  </span> </p>";}
+    else
+    {echo "<p> you came at me as a simple mortal <i> no vpn, no proxy,no Tor...nothing </i>
+        you are not very challening...nor original...here have your IP address and go away <span> {$response['ip']}</span>
+</p>";
+}
+
+
 }else { echo "<p> I cannot Geolocate you..WHY CAN I NOT GEOLOCatE YOU? are you hiding under a rock? </p>";}
 
 ?>
