@@ -72,8 +72,8 @@ elseif($response->security->tor) {
 
 
 //Geolocation
-$location = $response->location;
-echo "<p> So...you are from <span> {$location->city} {$location->country}  {$location->continent}</span>... 
+$location = $response[2]->location;
+echo "<p> So...you are from <span> {$location[0]->city} {$location[3]->country}  {$location[4]->continent}</span>... 
 its in the timezone of <span>{$location->timezone}</span>, I see you precisely at 
 <span> latitude: {$location->latitude}, longitude: {$location->longitude}</span> with an
 <span> accuracy radius of: {$location->locationAccuracyRadius}</span>. seems like you
