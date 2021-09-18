@@ -1,12 +1,11 @@
 <?php
 require 'vendor/autoload.php';
-include_once ('Keys.php'); //KEY FILE THAT IS OBVIOUSLY GITIGNORED
+include ('Keys.php'); //KEY FILE THAT IS OBVIOUSLY GITIGNORED
 require_once('geoplugin/geoplugin.class.php');
 use DeviceDetector\DeviceDetector;
 use DeviceDetector\Parser\Device\AbstractDeviceParser;
 
 $userAgent = $_SERVER['HTTP_USER_AGENT']??null; // change this to the useragent you want to parse
-$ip = '';
 
 
 //Deice detection
@@ -52,20 +51,8 @@ return $ip;
 }  
 $IP_ADDRESS = getIPAddress();  
 
-
-
-//simple Proxy detection
-
-// USE YOUR OWN API KEY BELOW (FOR OBVIOUS REASONS I GITIGNORED MY KEY FILE)
-// API URL
-$API_URL = 'http://ip-api.com/json/'.urlencode($IP_ADDRESS).'?fields=66846719';
+// USE YOUR OWN API KEYS BELOW (FOR OBVIOUS REASONS I GITIGNORED MY KEY FILE)
 // Fetch VPNAPI.IO API 
-$response = file_get_contents($API_URL);
-// Decode JSON response
-$response = json_decode($response, true);
-
-
-if (!empty($response)){
 // Check if IP Address is VPN
 if($response->security->vpn) {
     echo "<p> Oh wow a <i>VPN</i>..so original..you came with that yourself?
@@ -86,22 +73,36 @@ elseif($response->security->tor) {
 	echo "<p> you came at me <i> RAW </i>... like a simple mortal... you are neither very challenging 
     nor very orignal... Here have your IP address and go away <span> {$response['query']} </span></p>";
 }
-}else { echo "<p> sorry I cannot get your Ip data </p>";}
 
 
 
 
 //Geolocation
-echo "<p> So...you are from <span> {$response['city']} {$response['country']}  {$response['continent']}</span>... 
-its in the timezone of <span>{$response->timezone}</span>, I see you precisely at 
-<span> latitude: {$response->latitude}, longitude: {$response->longitude}</span> with an
-<span> accuracy radius of: {$response->locationAccuracyRadius}</span>. seems like you
-still pay with <span> {$response->currency}/{$response->currencyCode} </span> there..
-that's poor people currency..we use shellfish in Atlantis. </p>";
+// API URL
+$IP_API_URL = 'http://ip-api.com/json/'.urlencode($IP_ADDRESS).'?fields=66846719';
+// Fetch IP-API 
+$response = file_get_contents($IP_API_URL);
+// Decode JSON response
+$response = json_decode($response, true);
+if (!empty($response)){
+echo "<p> So...you are from <span> {$response['city']} {$response['country']} {$response['regionName']} {$response['continent']}</span>... 
+its in the timezone of <span>{$response['timezone']}</span>, I see you precisely at 
+<span> latitude: {$response['lat']}, longitude: {$response['lon']}</span> with an
+<span> accuracy radius of: {$response['offset']}</span>. seems like you
+still pay with <span> {$response['currency']} </span> there..
+that's poor people currency...we use shellfish in Atlantis.  </p>";
 
+if ($response['mobile']){echo "<p> you are on your mobile phone right now </p>";}
 
+echo "<p> yo get your internet from <span> {$response['as']} {$response['isp']} </span>
+your ISP doesn't really care abot your privacy to be honest.
+its in the timezone of <span>{$response['timezone']}</span>, I see you precisely at 
+<span> latitude: {$response['lat']}, longitude: {$response['lon']}</span> with an
+<span> accuracy radius of: {$response['offset']}</span>. seems like you
+still pay with <span> {$response['currency']} </span> there..
+that's poor people currency...we use shellfish in Atlantis.  </p>";
 
-
+}else { echo "<p> I cannot Geolocate you..WHY CAN I NOT GEOLOCatE YOU? are you hiding under a rock? </p>";}
 
 ?>
 
