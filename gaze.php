@@ -75,10 +75,13 @@ and your ISP doesn't really care about your privacy to be honest. </p>";
 //Obfuscation Detection
 if ($response['proxy']){echo "<p> I sense obfuscation on your IP address you are trying to hide from 
     me with either <i> vpn/proxy or Tor </i>...for legal reasons I hae to ask..are you a criminal?
-    or a hacker? Oh no I cannot get your Ip...yeah no I am joking its <span> {$response['query']}  </span> </p>";}
+    or a hacker? Oh no I cannot get your Ip...yeah no I am joking its <span> {$response['query']} </span>
+    ...hmm no someting is wrong...if its Tor yo won I cannot see you throuh that and all the data is wrong
+    But I know it and I will get you someday
+    </p>";}
     else
     {echo "<p> you came at me as a simple mortal <i> no vpn, no proxy,no Tor...nothing </i>
-        you are not very challening...nor original...here have your IP address and go away <span> {$response['query']}</span>
+        you are not very challenging...nor original...here have your IP address and go away <span> {$response['query']}</span>
 </p>";
 }
 
