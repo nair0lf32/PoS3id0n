@@ -36,14 +36,12 @@ installed on a <span> {$device} </span> with <span> {$os} </span>
 
 //GET IP Address
 function getIPAddress() {  
-
  //whether ip is from the share internet  
-if(!emptyempty($_SERVER['HTTP_CLIENT_IP'])) {  
+if(!empty($_SERVER['HTTP_CLIENT_IP'])) {  
     $ip = $_SERVER['HTTP_CLIENT_IP'];  
 } 
-
     //whether ip is from the proxy  
-    elseif (!emptyempty($_SERVER['HTTP_X_FORWARDED_FOR'])) {  
+    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {  
                 $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];  
     }  
 //whether ip is from the remote address  
@@ -52,7 +50,6 @@ if(!emptyempty($_SERVER['HTTP_CLIENT_IP'])) {
     }  
 return $ip;  
 }  
-
 $IP_ADDRESS = getIPAddress();  
 
 
