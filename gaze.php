@@ -39,11 +39,14 @@ installed on a <span> {$device} </span> with <span> {$os} </span>
 $IP_ADDRESS = $_SERVER['REMOTE_ADDR']; # Automatically get IP Address
 // USE YOUR OWN API KEY BELOW (FOR OBVIOUS REASONS I GITIGNORED MY KEY FILE)
 // API URL
-$API_URL = 'https://vpnapi.io/api/' . $IP_ADDRESS . '?key=' . getenv("API_KEY");
+$API_URL = 'https://vpnapi.io/api/' .urlencode($IP_ADDRESS). '?key=' .urlencode(getenv("API_KEY"));
 // Fetch VPNAPI.IO API 
 $response = file_get_contents($API_URL);
 // Decode JSON response
-$response = json_decode($response);
+$response = json_decode($response, true);
+
+
+if (!empty($response)){
 // Check if IP Address is VPN
 if($response->security->vpn) {
     echo "<p> Oh wow a <i>VPN</i>..so original..you came with that yourself?
@@ -64,6 +67,8 @@ elseif($response->security->tor) {
 	echo "<p> you came at me <i> RAW </i>... like a simple mortal... you are neither very challenging 
     nor very orignal... Here have your IP address and go away <span> {$response->ip} </span></p>";
 }
+}else { echo "<p> sorry I cannot get your Ip data </p>";}
+
 
 
 //HOstname? if possible?
