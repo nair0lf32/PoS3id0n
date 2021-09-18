@@ -76,7 +76,12 @@ else{echo "<p> hmm...I can't see your machine name..pesky DNS meddling with my a
 
 //Geolocation
 $location = $response->location;
-
+echo "<p> So...you are from <span> {$location->city}, {$location->country} </span>... 
+its in the timezone of <span>{$geoplugin->timezone}</span>, I see you precisely at 
+<span> latitude: {$geoplugin->latitude}, longitude: {$geoplugin->longitude}</span> with an
+<span> accuracy radius of: {$geoplugin->locationAccuracyRadius}</span>. seems like you
+still pay with <span> {$geoplugin->currencySymbol}/{$geoplugin->currencyCode} </span> there..
+that's poor people currency..we use shellfish in Atlantis. </p>";
 
 
 
