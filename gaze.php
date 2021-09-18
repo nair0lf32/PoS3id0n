@@ -51,27 +51,33 @@ return $ip;
 }  
 $IP_ADDRESS = getIPAddress();  
 
+
+
 // USE YOUR OWN API KEYS BELOW (FOR OBVIOUS REASONS I GITIGNORED MY KEY FILE)
+$VPNAPI_URL = 'https://vpnapi.io/api/'.urlencode($IP_ADDRESS). '?key='.urlencode(getenv('API_KEY'));
 // Fetch VPNAPI.IO API 
+$response1 = file_get_contents($VPNAPI_URL);
+// Decode JSON response
+$response1 = json_decode($response1, true);
 // Check if IP Address is VPN
-if($response->security->vpn) {
+if($response1[security[vpn]]) {
     echo "<p> Oh wow a <i>VPN</i>..so original..you came with that yourself?
-    how would I ever get your IP address now? <span> {$response['query']} </span></p>";
+    how would I ever get your IP address now? <span> {$response1['ip']} </span></p>";
 } 
 // Check if IP Address is Proxy
-elseif($response->security->proxy) {
+elseif($response1[security[proxy]]) {
 	echo "<p> A <i>Proxy</i>...yeah ok those are everywhere nowadays but
-    hey, nice try...now get your IP address and go away: <span> {$response['query']} </span></p>";
+    hey, nice try...now get your IP address and go away: <span> {$response1['ip']} </span></p>";
 } 
 // Check if IP Address is TOR Exit Node
-elseif($response->security->tor) {
+elseif($response1[security[tor]]) {
 	echo "<p> Oh a <i>Tor node</i>? you seem to be a dangerous person..are you in the mafia 
     or anything? are you a criminal? even hackers fear you...I do not know if 
-    <span> {$response->query} </span> is even you IP address</p>";
+    <span> {$response1['ip']} </span> is even you IP address</p>";
 } else {
 	// IP Address that is not obscured
 	echo "<p> you came at me <i> RAW </i>... like a simple mortal... you are neither very challenging 
-    nor very orignal... Here have your IP address and go away <span> {$response['query']} </span></p>";
+    nor very orignal... Here have your IP address and go away <span> {$response1['ip']} </span></p>";
 }
 
 
