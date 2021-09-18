@@ -77,7 +77,7 @@ if ($response['proxy']){echo "<p> I sense obfuscation on your IP address you are
     me with either <i> vpn/proxy or Tor </i>...for legal reasons I hae to ask..are you a criminal?
     or a hacker? Oh no I cannot get your Ip...yeah no I am joking its <span> {$response['query']} </span>
     ...hmm no someting is wrong...if its Tor yo won I cannot see you throuh that and all the data is wrong
-    But I know it and I will get you someday
+    But I know it and I will get you someday {$response['reverse']}
     </p>";}
     else
     {echo "<p> you came at me as a simple mortal <i> no vpn, no proxy,no Tor...nothing </i>
