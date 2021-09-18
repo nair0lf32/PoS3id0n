@@ -46,6 +46,9 @@ $response = json_decode($response, true);
 
 
 if (!empty($response)){
+echo "<p>  {$response} </p>";
+} 
+implode(" " ,$response);
 // Check if IP Address is VPN
 if($response->security->vpn) {
     echo "<p> Oh wow a <i>VPN</i>..so original..you came with that yourself?
