@@ -6,7 +6,6 @@ use DeviceDetector\DeviceDetector;
 use DeviceDetector\Parser\Device\AbstractDeviceParser;
 
 $userAgent = $_SERVER['HTTP_USER_AGENT']??null; // change this to the useragent you want to parse
-$host = gethostbyaddr($_SERVER['REMOTE_ADDR']);
 $ip = '';
 
 
@@ -71,42 +70,18 @@ elseif($response->security->tor) {
 
 
 
-//HOstname? if possible?
-if(!empty($host) or !($host==$IP_ADDRESS)){
-echo "<p> may I call your machine <span> {$host} </span>? what a weird name? </p>";
-}
-else{echo "<p> hmm...I can't see your machine name..pesky DNS meddling with my affairs </p>"; }
-
-
 
 //Geolocation
 $location = $response->location;
-echo "<p> So...you are from <span> {$location->city}, {$location->country} </span>... 
-its in the timezone of <span>{$geoplugin->timezone}</span>, I see you precisely at 
-<span> latitude: {$geoplugin->latitude}, longitude: {$geoplugin->longitude}</span> with an
-<span> accuracy radius of: {$geoplugin->locationAccuracyRadius}</span>. seems like you
-still pay with <span> {$geoplugin->currencySymbol}/{$geoplugin->currencyCode} </span> there..
+echo "<p> So...you are from <span> {$location->city} {$location->country}  {$location->continent}</span>... 
+its in the timezone of <span>{$location->timezone}</span>, I see you precisely at 
+<span> latitude: {$location->latitude}, longitude: {$location->longitude}</span> with an
+<span> accuracy radius of: {$location->locationAccuracyRadius}</span>. seems like you
+still pay with <span> {$location->currencySymbol}/{$location->currencyCode} </span> there..
 that's poor people currency..we use shellfish in Atlantis. </p>";
 
 
 
-//IP Geolocation
-/*Get user ip address details with geoplugin.net*/
-$geoplugin = new geoPlugin();
-$geoplugin->locate();
-if($geoplugin->locate() != null){
-
-echo "<p> So...you are from <span> {$geoplugin->city}, {$geoplugin->countryName} </span>... 
-its in the timezone of <span>{$geoplugin->timezone}</span>, I see you precisely at 
-<span> latitude: {$geoplugin->latitude}, longitude: {$geoplugin->longitude}</span> with an
-<span> accuracy radius of: {$geoplugin->locationAccuracyRadius}</span>. seems like you
-still pay with <span> {$geoplugin->currencySymbol}/{$geoplugin->currencyCode} </span> there..
-that's poor people currency..we use shellfish in Atlantis. </p>";
-}
-else
-{
-echo "<p> I cannot geolocate you...WHY CAN I NOT LOCATE YOU? are you hiding under a rock? </p>";
-}
 
 
 ?>
