@@ -61,17 +61,17 @@ $response1 = file_get_contents($VPNAPI_URL);
 $response1 = json_decode($response1, true);
 if (!empty($response1)){
 // Check if IP Address is VPN
-if($response1[vpn]) {
+if($response1['security']['vpn']) {
     echo "<p> Oh wow a <i>VPN</i>..so original..you came with that yourself?
     how would I ever get your IP address now? <span> {$response1['ip']} </span></p>";
 } 
 // Check if IP Address is Proxy
-elseif($response1[proxy]) {
+elseif($response1['security']['proxy']) {
 	echo "<p> A <i>Proxy</i>...yeah ok those are everywhere nowadays but
     hey, nice try...now get your IP address and go away: <span> {$response1['ip']} </span></p>";
 } 
 // Check if IP Address is TOR Exit Node
-elseif($response1[tor]) {
+elseif($response1['security']['tor']) {
 	echo "<p> Oh a <i>Tor node</i>? you seem to be a dangerous person..are you in the mafia 
     or anything? are you a criminal? even hackers fear you...I do not know if 
     <span> {$response1['ip']} </span> is even you IP address</p>";
