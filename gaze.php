@@ -59,18 +59,19 @@ $VPNAPI_URL = 'https://vpnapi.io/api/'.urlencode($IP_ADDRESS). '?key='.urlencode
 $response1 = file_get_contents($VPNAPI_URL);
 // Decode JSON response
 $response1 = json_decode($response1, true);
+if (!empty($response1)){
 // Check if IP Address is VPN
-if($response1[security[vpn]]) {
+if($response1[vpn]) {
     echo "<p> Oh wow a <i>VPN</i>..so original..you came with that yourself?
     how would I ever get your IP address now? <span> {$response1['ip']} </span></p>";
 } 
 // Check if IP Address is Proxy
-elseif($response1[security[proxy]]) {
+elseif($response1[proxy]) {
 	echo "<p> A <i>Proxy</i>...yeah ok those are everywhere nowadays but
     hey, nice try...now get your IP address and go away: <span> {$response1['ip']} </span></p>";
 } 
 // Check if IP Address is TOR Exit Node
-elseif($response1[security[tor]]) {
+elseif($response1[tor]) {
 	echo "<p> Oh a <i>Tor node</i>? you seem to be a dangerous person..are you in the mafia 
     or anything? are you a criminal? even hackers fear you...I do not know if 
     <span> {$response1['ip']} </span> is even you IP address</p>";
@@ -79,9 +80,7 @@ elseif($response1[security[tor]]) {
 	echo "<p> you came at me <i> RAW </i>... like a simple mortal... you are neither very challenging 
     nor very orignal... Here have your IP address and go away <span> {$response1['ip']} </span></p>";
 }
-
-
-
+}else { echo "<p> hmm..I don't know if you obfuscated your IP address or not...well played </p>";}
 
 //Geolocation
 // API URL
@@ -100,14 +99,8 @@ that's poor people currency...we use shellfish in Atlantis.  </p>";
 
 if ($response['mobile']){echo "<p> you are on your mobile phone right now </p>";}
 
-echo "<p> yo get your internet from <span> {$response['as']} {$response['isp']} </span>
-your ISP doesn't really care abot your privacy to be honest.
-its in the timezone of <span>{$response['timezone']}</span>, I see you precisely at 
-<span> latitude: {$response['lat']}, longitude: {$response['lon']}</span> with an
-<span> accuracy radius of: {$response['offset']}</span>. seems like you
-still pay with <span> {$response['currency']} </span> there..
-that's poor people currency...we use shellfish in Atlantis.  </p>";
-
+echo "<p> you get your internet from <span> {$response['as']} {$response['isp']} </span>
+your ISP doesn't really care abot your privacy to be honest. </p>";
 }else { echo "<p> I cannot Geolocate you..WHY CAN I NOT GEOLOCatE YOU? are you hiding under a rock? </p>";}
 
 ?>
