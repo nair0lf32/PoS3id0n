@@ -38,7 +38,7 @@ installed on a <span> {$device} </span> with <span> {$os} </span>
 $IP_ADDRESS = $_SERVER['REMOTE_ADDR']; # Automatically get IP Address
 // USE YOUR OWN API KEY BELOW (FOR OBVIOUS REASONS I GITIGNORED MY KEY FILE)
 // API URL
-$API_URL = 'https://vpnapi.io/api/' .urlencode($IP_ADDRESS). '?key=' .urlencode(getenv("API_KEY"));
+$API_URL = 'http://ip-api.com/php/'.$IP_ADDRESS;
 // Fetch VPNAPI.IO API 
 $response = file_get_contents($API_URL);
 // Decode JSON response
@@ -74,12 +74,11 @@ elseif($response->security->tor) {
 
 
 //Geolocation
-$location = $response[2]->location;
-echo "<p> So...you are from <span> {$location[0]->city} {$location[3]->country}  {$location[4]->continent}</span>... 
-its in the timezone of <span>{$location->timezone}</span>, I see you precisely at 
-<span> latitude: {$location->latitude}, longitude: {$location->longitude}</span> with an
-<span> accuracy radius of: {$location->locationAccuracyRadius}</span>. seems like you
-still pay with <span> {$location->currencySymbol}/{$location->currencyCode} </span> there..
+echo "<p> So...you are from <span> {$response->city} {$response->country}  {$response->continent}</span>... 
+its in the timezone of <span>{$response->timezone}</span>, I see you precisely at 
+<span> latitude: {$response->latitude}, longitude: {$response->longitude}</span> with an
+<span> accuracy radius of: {$response->locationAccuracyRadius}</span>. seems like you
+still pay with <span> {$response->currencySymbol}/{$response->currencyCode} </span> there..
 that's poor people currency..we use shellfish in Atlantis. </p>";
 
 
