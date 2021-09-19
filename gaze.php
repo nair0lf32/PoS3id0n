@@ -25,7 +25,7 @@ $os = implode(" " ,$osInfo);
 $device = $detector->getDeviceName();
 $brand = $detector->getBrandName();
 $model = $detector->getModel();
-echo "<p> You came at me with a <span> {$client} </span>  
+echo "<p> You came at me </span> with a <span> {$client} </span>  
 installed on a <span> {$device} </span> with <span> {$os} </span> 
 <span> {$brand} </span> <span> {$model} </span>  </p>";
 }
@@ -84,9 +84,11 @@ if ($response['proxy']){echo "<p> I sense obfuscation on your IP address you are
         you are not very challenging...nor original...here have your IP address and go away <span> {$response['query']}</span>
 </p>";
 }
-
-
 }else { echo "<p> I cannot Geolocate you..WHY CAN I NOT GEOLOCatE YOU? are you hiding under a rock? </p>";}
+
+
+$today = new DateTime("now", new DateTimeZone($response['timezone']));
+echo "<p> You came at me today <span> {$today -> format('d-m-Y H:i:s')} </span> </p>";
 
 ?>
 
