@@ -72,23 +72,28 @@ and your ISP doesn't really care about your privacy to be honest. </p>";
 
 
 
+if(!empty($_SERVER['HTTP_REFERER'])) {echo "<p> did you just visit <span> {$_SERVER['HTTP_REFERER']} </span>? </p>";}
+
+
 //Obfuscation Detection
+
 if ($response['proxy']){echo "<p> I sense obfuscation on your IP address you are trying to hide from 
-    me with either <i> vpn/proxy or Tor </i>...for legal reasons I hae to ask..are you a criminal?
-    or a hacker? Oh no I cannot get your Ip...yeah no I am joking its <span> {$response['query']} </span>
-    ...hmm no someting is wrong...if its Tor yo won I cannot see you throuh that and all the data is wrong
-    But I know it and I will get you someday {$response['reverse']}
-    </p>";}
+    me with either <i> vpn/proxy or Tor </i>...for legal reasons I have to ask..are you a criminal?
+    or a hacker? your Ip...its <span> {$response['query']} </span>
+    ...hmm no someting is wrong...you won I cannot see you through that without violating
+    at least 32 laws...all the data above is biased
+    But I know it and I will get you someday (maybe when I own the internet) </p>";}
     else
-    {echo "<p> you came at me as a simple mortal <i> no vpn, no proxy,no Tor...nothing </i>
-        you are not very challenging...nor original...here have your IP address and go away <span> {$response['query']}</span>
+    {echo "<p> A simple mortal with <i> no vpn, no proxy, no Tor...nothing </i>
+        you are not very challenging...nor original...here have your IP address <span> {$response['query']}</span> and go away 
 </p>";
 }
 }else { echo "<p> I cannot Geolocate you..WHY CAN I NOT GEOLOCatE YOU? are you hiding under a rock? </p>";}
 
 
 $today = new DateTime("now", new DateTimeZone($response['timezone']));
-echo "<p> You came at me today <span> {$today -> format('d-m-Y H:i:s')} </span> </p>";
-
+echo "<p> You came at me today <span> {$today -> format('d-m-Y H:i:s')} </span> and there is nothing special about this day.. </p>";
+echo "<p> I could store our encounter in my database (If I had any) or give you a cookie but you and your data are not that
+important to me...so...just leave now!</p>";
 ?>
 
