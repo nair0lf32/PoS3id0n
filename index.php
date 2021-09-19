@@ -19,10 +19,13 @@
     <div class = container > 
         <h1>PoSeid</h1>
     <div class = eyeball>
-        <div class="inner-eye">
-            <div class="pupil"></div>
-            <div class="light"></div>
-            <div class="eyelid"></div>
+        <div class="eyelid"></div>
+        <div class="eye-wrap"> 
+            <div class="inner-eye">
+                <div class="pupil"></div>
+                <div class="light"></div>
+        </div>
+        
         </div>
     </div>
         <h1>n</h1>
@@ -55,27 +58,6 @@
     </div>
 
 
-    <script>
-	document.querySelector(
-	"body").addEventListener("mousemove", body);
-	function eyeball() {
-		var eye = document.querySelectorAll(".inner-eye");
-		eye.forEach(function (eye) {
-			let x =
-				eye.getBoundingClientRect().left +
-				eye.clientWidth / 2;
-		
-			let y =
-				eye.getBoundingClientRect().top +
-				eye.clientHeight / 2;
-			let radian =
-			Math.atan2(event.pageX - x, event.pageY - y);
-			let rot = radian * (180 / Math.PI) * -1 + 270;
-			eye.style.transform =
-			"rotate(" + rot + "deg)";
-		});
-	}
-</script>
 
     <script type="text/javascript" src="/js/script.js"></script>
 </body>
