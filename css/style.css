@@ -26,15 +26,14 @@ align-self: center;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background-color: #080449; 
+    background-color: #000; 
     box-shadow: 0 15px 0 15px #000;
     
-    
 animation-name: open-eyes;
-animation-duration: 4s; 
+animation-duration: 3s; 
 animation-iteration-count: 1;
 animation-fill-mode: forwards;
-animation-delay: 0.5s;
+animation-delay: 0.3s;
 animation-timing-function: ease-in-out;
 }
 @keyframes open-eyes{
@@ -55,7 +54,9 @@ animation-timing-function: ease-in-out;
     border-radius: 50%;
     background-color: #fff; 
     overflow: hidden;
+    animation: blink 8s cubic-bezier(0.785, 0.135, 0.15, 0.86) 5s infinite;
 }
+
 
 .inner-eye
 {   
@@ -126,6 +127,19 @@ font-size: 350%;
     height: 5px;
     margin-left: 20px;
 }
+
+@keyframes blink {
+	0%, 8% {
+		height: 100px;
+	}
+	10%, 12% {
+		height: 5px;
+	}
+	14%, 100% {
+		height: 100px;
+	}
+}
+
 }
 
 
@@ -166,6 +180,17 @@ font-size: 1000%;
     margin-left: 40px;
 }
 
+@keyframes blink {
+	0%, 8% {
+		height: 200px;
+	}
+	10%, 12% {
+		height: 5px;
+	}
+	14%, 100% {
+		height: 200px;
+	}
+}
 }
 
 
@@ -176,7 +201,7 @@ color: blue;
 
 i
 {
-  color: red;  
+color: red;  
 }
 
 .copyright

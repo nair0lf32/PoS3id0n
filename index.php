@@ -36,7 +36,8 @@
         <?php 
         echo "<p> Hello, and welcome... </p>";
         echo "<p> I am poseidon's eye...I can see you..whoever you are, whenever you are.</p>";
-        echo "<p> Wanna test me? try hiding yourself..go private, vpn or proxy..</p>";
+        echo "<p> Ok maybe not behind a proxy, vpn or Tor (nordic mythology is not my domain)..
+            But hey you can still try those and see what I see...</p>";
         echo "<p> Let me show you what I can see about you... </p>";
         echo "<p> A quick gaze in your data...and BEHOLD! below you can get your results...</p>";
         ?>
@@ -54,6 +55,27 @@
     </div>
 
 
+    <script>
+	document.querySelector(
+	"body").addEventListener("mousemove", body);
+	function eyeball() {
+		var eye = document.querySelectorAll(".inner-eye");
+		eye.forEach(function (eye) {
+			let x =
+				eye.getBoundingClientRect().left +
+				eye.clientWidth / 2;
+		
+			let y =
+				eye.getBoundingClientRect().top +
+				eye.clientHeight / 2;
+			let radian =
+			Math.atan2(event.pageX - x, event.pageY - y);
+			let rot = radian * (180 / Math.PI) * -1 + 270;
+			eye.style.transform =
+			"rotate(" + rot + "deg)";
+		});
+	}
+</script>
 
     <script type="text/javascript" src="/js/script.js"></script>
 </body>
