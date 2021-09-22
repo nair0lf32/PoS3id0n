@@ -38,7 +38,7 @@
         <div class="message">
         <?php 
         echo "<p> Hello, and welcome... </p>";
-        echo "<p> I am poseidon's eye...I can see you..whoever you are, whenever you are.</p>";
+        echo "<p> I am poseidon's eye...I can see you..whoever you are, wherever you are.</p>";
         echo "<p> Ok maybe not behind a proxy, vpn or Tor (nordic mythology is out of my boundaries)..
             But hey you can still try those and see what I see...</p>";
         echo "<p> Let me show you what I can see about you... </p>";
