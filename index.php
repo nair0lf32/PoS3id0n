@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">  
-    <head>
+<html lang="en">
+
+<head>
     <title></title>
 
     <meta charset="utf-8">
@@ -15,53 +16,47 @@
 </head>
 
 <body>
-    <header> 
-    <div class = container > 
-        <h1>PoSeid</h1>
-    <div class = eyeball>
-        <div class="eyelid"></div>
-        <div class="eye-wrap"> 
-            <div class="inner-eye">
-                <div class="pupil"></div>
-                <div class="light"></div>
+    <header>
+        <div class=container>
+            <h1>PoSeid</h1>
+            <div class=eyeball>
+                <div class="eyelid"></div>
+                <div class="eye-wrap">
+                    <div class="inner-eye">
+                        <div class="pupil"></div>
+                        <div class="light"></div>
+                    </div>
+
+                </div>
+            </div>
+            <h1>n</h1>
         </div>
-        
-        </div>
-    </div>
-        <h1>n</h1>
-    </div>
     </header>
 
 
-
-        <section class="content-main">
+    <section class="content-main">
         <div class="message">
-        <?php 
-        echo "<p> Hello, and welcome... </p>";
-        echo "<p> I am poseidon's eye...I can see you..whoever you are, wherever you are.</p>";
-        echo "<p> Ok maybe not behind a proxy, vpn or Tor (nordic mythology is out of my boundaries)..
-            But hey you can still try those and see what I see...</p>";
-        echo "<p> Let me show you what I can see about you... </p>";
-        echo "<p> A quick gaze in your data...and BEHOLD! below you can get your results...</p>";
-        ?>
+            <?php
+            echo "<p> Hello, and welcome. I am poseidon's eye...I can see you!</p>";
+            echo "<p>  whoever you are, wherever you are.</p>";
+            echo "<p> Ok that may not be true, as your privacy would be at risk.  </p>";
+            echo "<p> But hey you can still test me and see what I see about you</p>";
+            echo "<p> Let me show you...A quick gaze in your data...and BEHOLD!</p>";
+            ?>
         </div>
 
         <div class=gaze-data>
-        <?php include 'gaze.php'; ?>
+            <?php include 'gaze.php'; ?>
         </div>
 
-        </section>
+    </section>
 
-        <footer>
+    <footer>
         <p class="copyright">by florian EDEMESSI (nair0lf32) 2021</p>
-        </footer>
+    </footer>
     </div>
-
-
 
     <script type="text/javascript" src="/js/script.js"></script>
 </body>
 
 </html>
-
-

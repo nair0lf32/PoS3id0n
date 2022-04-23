@@ -1,7 +1,5 @@
 window.onload = function () {
 
-
-    // for further animations
     const eye = document.querySelector('.eye-wrap');
     window.addEventListener('mousemove', (event) => {
         const x = -(window.innerWidth / 2 - event.pageX) / 35;
@@ -17,4 +15,3 @@ window.onload = function () {
     });
 
 };
-
