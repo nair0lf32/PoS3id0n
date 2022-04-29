@@ -5,7 +5,7 @@
     <title></title>
 
     <meta charset="utf-8">
-    <meta name="description" content="">
+    <meta name="description" content="poseidon">
     <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -37,11 +37,10 @@
     <section class="content-main">
         <div class="message">
             <?php
-            echo "<p> Hello, and welcome. I am poseidon's eye...I can see you!</p>";
-            echo "<p>  whoever you are, wherever you are.</p>";
-            echo "<p> Ok that may not be true, as your privacy would be at risk.  </p>";
-            echo "<p> But hey you can still test me and see what I see about you</p>";
-            echo "<p> Let me show you...A quick gaze in your data...and BEHOLD!</p>";
+            echo "<p> Hello, and welcome. I am poseidon's eye...I can see you! whoever you are, wherever you are. 
+            Ok that may not be true, as your privacy would be at risk. 
+            But hey you can still test me and see what I see about you. 
+            Let me show you...A quick gaze in your data...and BEHOLD!</p>";
             ?>
         </div>
 
