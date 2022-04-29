@@ -37,10 +37,13 @@
     <section class="content-main">
         <div class="message">
             <?php
-            echo "<p> Hello, and welcome. I am poseidon's eye...I can see you! whoever you are, wherever you are. 
-            Ok that may not be true, as your privacy would be at risk. 
-            But hey you can still test me and see what I see about you. 
-            Let me show you...A quick gaze in your data...and BEHOLD!</p>";
+            echo "<p> Hello, and welcome. I am poseidon's eye... <br>
+            I can see you! whoever you are, wherever you are. <br>
+            yes, that may not be true, as your privacy would be at risk. 
+            But you can still test me and see what I see about you. 
+            Let me show you... <br>
+            
+            A quick gaze in your data...and BEHOLD! </p>";
             ?>
         </div>
 

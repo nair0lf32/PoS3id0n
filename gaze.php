@@ -53,18 +53,18 @@ $IP_API_URL = 'http://ip-api.com/json/' . urlencode($IP_ADDRESS) . '?fields=6684
 $response = file_get_contents($IP_API_URL);
 $response = json_decode($response, true);
 if (!empty($response)) {
-    echo "<p> Location: <span> {$response['city']} {$response['country']} {$response['regionName']} {$response['continent']}</span>.
-    Timezone: <span>{$response['timezone']}</span>. </br> Precisely at:  
-    <span> latitude: {$response['lat']}, longitude: {$response['lon']}</span> with an
-    <span> accuracy radius of: {$response['offset']}</span>. </br> Common currency: <span> {$response['currency']} </span> </p>";
+    echo "<p> Location: <span> {$response['city']} {$response['country']} {$response['regionName']} {$response['continent']}</span>. <br>
+    Timezone: <span>{$response['timezone']}</span>. <br> 
+    Precisely at: <span> latitude: {$response['lat']}, longitude: {$response['lon']}</span> with an
+    <span> accuracy radius of: {$response['offset']}</span>. </br> Common currency: <span> {$response['currency']} </span> </p> <br>";
 
     if ($response['mobile']) {
-        echo "<p> you are using a <span> mobile connection detected </span> or maybe a modem with a Sim-card...</p>";
+        echo "<p> you are using a <span> mobile connection detected </span> or maybe a modem with a Sim-card...</p> <br>";
     }
-    echo "<p> ISP: <span> {$response['as']} with {$response['isp']} </span> </p>";
+    echo "<p> ISP: <span> {$response['as']} with {$response['isp']} </span> </p> <br>";
 
     if (!empty($_SERVER['HTTP_REFERER'])) {
-        echo "<p> hmm...Last referer: <span> {$_SERVER['HTTP_REFERER']} </span>? </p>";
+        echo "<p> hmm...Last referer: <span> {$_SERVER['HTTP_REFERER']} </span>? </p> <br>";
     }
 
     //Obfuscation Detection
@@ -73,19 +73,19 @@ if (!empty($response)) {
         the gaze with either a <i> vpn/proxy or Tor </i>...for legal reasons I have to ask: are you a criminal?
         your Ip address is: <span> {$response['query']} </span>
         I cannot see you through that without violating at least 32 laws...all the data above is biased
-        But I know it and I will get you someday (maybe when I own the internet) </p>";
+        But I know it and I will get you someday (maybe when I own the internet) </p> <br>";
     } else {
         echo "<p> No obfuscation detected: <i> no vpn </i>, <i> no proxy </i>, <i> no Tor</i>
         you are not very challenging, nor original...here have your IP address <span> {$response['query']}</span> 
         and go away 
-        </p>";
+        </p> <br>";
     }
 } else {
-    echo "<p> I cannot Geolocate you..WHY CAN I NOT GEOLOCATE YOU? are you living under a rock? </p>";
+    echo "<p> I cannot Geolocate you..WHY CAN I NOT GEOLOCATE YOU? are you living under a rock? </p> <br>";
 }
 
 $today = new DateTime("now", new DateTimeZone($response['timezone']));
-echo "<p> Encounter date and time: <span> {$today->format('d-m-Y H:i:s')} </span>. Nothing special about this day! </p>";
+echo "<p> Encounter date and time: <span> {$today->format('d-m-Y H:i:s')} </span>. Nothing special about this day! </p> <br>";
 
 echo "<p> Interresting data... I could store it but you and your data are not that important to me. 
 Be gone mortal! </p>";
