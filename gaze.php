@@ -47,7 +47,6 @@ function getIPAddress()
 }
 $IP_ADDRESS = getIPAddress();
 
-
 //Geolocation
 $IP_API_URL = 'http://ip-api.com/json/' . urlencode($IP_ADDRESS) . '?fields=66846719';
 $response = file_get_contents($IP_API_URL);
@@ -87,5 +86,5 @@ if (!empty($response)) {
 $today = new DateTime("now", new DateTimeZone($response['timezone']));
 echo "<p> Encounter date and time: <span> {$today->format('d-m-Y H:i:s')} </span>. Nothing special about this day! </p> <br>";
 
-echo "<p> Interresting data... I could store it but you and your data are not that important to me. 
+echo "<p> Interresting data... I could store it but it's not that important to me. <br>
 Be gone mortal! </p>";
