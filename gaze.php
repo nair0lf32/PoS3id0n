@@ -24,8 +24,8 @@ if ($detector->isBot()) {
     $brand = $detector->getBrandName();
     $model = $detector->getModel();
     echo "<p> Browser used: <span> {$client} </span> <br> 
-Machine: <span> {$device} ,</span> <span> {$os} ,</span> 
-<span> {$brand} ,</span> <span> {$model} </span>  </p>";
+Machine: <span> {$device} </span> <span> {$os} </span> 
+<span> {$brand} </span> <span> {$model} </span>  </p>";
 }
 
 //GET IP Address
@@ -58,8 +58,11 @@ if (!empty($response)) {
     Accuracy radius: <span> {$response['offset']}</span>. </br> Common currency: <span> {$response['currency']} </span> </p> <br>";
 
     if ($response['mobile']) {
-        echo "<p> <span> mobile connection detected </span> or maybe a modem with a Sim-card...</p> <br>";
+        echo "<p> <span> mobile connection detected </span> maybe a modem with a Sim-card</p> <br>";
+    } else {
+        echo "<p> <span> Not using a mobile connection... </span> </p> <br>";
     }
+
     echo "<p> ISP: <span> {$response['as']} {$response['isp']} </span> </p> <br>";
 
     if (!empty($_SERVER['HTTP_REFERER'])) {

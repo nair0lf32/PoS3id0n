@@ -39,9 +39,9 @@
             <?php
             echo "<p> Hello, and welcome. I am poseidon's eye... <br>
             I can see you! whoever you are, wherever you are. <br>
-            Well, that may not be true. Your privacy would be at risk.<br> 
-            But you can still test me and see what I see about you. <br> 
-            Let me show you... <br>
+            Well, that may not be true. I am sadly limited by the law <br>
+            and your \"privacy rights\" <br> 
+            But I can still show you what I see about you and your device. <br> 
             
             A quick gaze in your data...and BEHOLD! </p>";
             ?>
